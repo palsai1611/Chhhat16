@@ -6,11 +6,23 @@
 
     <title>Chhhat</title>
 
+    <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 40px 20px;
+        }
+
+        #welcome {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #status {
+            font-size: 14px;
+            margin-bottom: 30px;
         }
 
         button {
@@ -27,9 +39,34 @@
 
     <h1>Chhhat</h1>
 
-    <p>Meet and chat with a random stranger.</p>
+    <div id="welcome">Loading your Telegram account...</div>
+
+    <div id="status"></div>
 
     <button>Find a Stranger</button>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+
+        tg.ready();
+        tg.expand();
+
+        const user = tg.initDataUnsafe?.user;
+
+        if (user) {
+            document.getElementById("welcome").innerText =
+                "Hi, " + user.first_name + " 👋";
+
+            document.getElementById("status").innerText =
+                "Telegram account connected";
+        } else {
+            document.getElementById("welcome").innerText =
+                "Telegram user not detected";
+
+            document.getElementById("status").innerText =
+                "Please open Chhhat inside Telegram";
+        }
+    </script>
 
 </body>
 </html>
