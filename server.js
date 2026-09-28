@@ -14,9 +14,9 @@ app.get("/health", (req, res) => {
         app: "chhhat16"
     });
 });
-
 const PORT = process.env.PORT || 3000;
+const HOST = "0.0.0.0";
 
-app.listen(PORT, () => {
-    console.log(`Chhhat backend running on port ${PORT}`);
+app.listen(PORT, HOST, () => {
+    console.log(`Chhhat backend running on ${HOST}:${PORT}`);
 });
